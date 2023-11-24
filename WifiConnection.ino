@@ -15,122 +15,126 @@ char ssid[] = SECRET_SSID;   // your network SSID (name)
 char pass[] = SECRET_PASS;   // your network password (use for WPA, or use as key for WEP)
 int status = WL_IDLE_STATUS; // the Wifi radio's status
 
-//prototpye function
+// Prototype function
 void _printMacAddress(byte mac[]);
 
+/**
+ * Set up WiFi connection for Airlift Wifi Featherwing.
+ */
 void wifiConnectionSetup() {
+    Serial.begin(115200);
 
-  Serial.begin(115200);
+    while (!Serial) {
+        ; // wait for serial port to connect. Needed for native USB port only
+    }
 
-  while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
-  }
+    Serial.println("Connecting to wifi network");
 
-  Serial.println("Connecting to wifi network");
+    // Set up WiFi module pins
+    WiFi.setPins(SPIWIFI_SS, SPIWIFI_ACK, ESP32_RESETN, ESP32_GPIO0, &SPIWIFI);
 
-  // Set up WiFi module pins
-  WiFi.setPins(SPIWIFI_SS, SPIWIFI_ACK, ESP32_RESETN, ESP32_GPIO0, &SPIWIFI);
+    // Check for the WiFi module:
+    while (WiFi.status() == WL_NO_MODULE) {
+        Serial.println("Communication with WiFi module failed!");
+        // Don't continue until the WiFi module is available
+        delay(1000);
+    }
 
-  // Check for the WiFi module:
-  while (WiFi.status() == WL_NO_MODULE) {
-    Serial.println("Communication with WiFi module failed!");
-    // Don't continue until the WiFi module is available
-    delay(1000);
-  }
-
-  connectToWifi();
-  printWifiDeviceInfo();
-  printWifiInfo();
-
+    connectToWifi();
+    printWifiDeviceInfo();
+    printWifiInfo();
 }
 
+/**
+ * Connect to WiFi network.
+ */
 void connectToWifi() {
+    String fv = WiFi.firmwareVersion();
+    if (fv < "1.0.0") {
+        Serial.println("Please upgrade the firmware");
+    }
 
-  String fv = WiFi.firmwareVersion();
-  if (fv < "1.0.0") {
-    Serial.println("Please upgrade the firmware");
-  }
+    // Attempt to connect to Wifi network:
+    while (status != WL_CONNECTED) {
+        Serial.print("Attempting to connect to WPA SSID: ");
+        Serial.println(ssid);
+        // Connect to WPA/WPA2 network:
+        status = WiFi.begin(ssid, pass);
 
-  // attempt to connect to Wifi network:
-  while (status != WL_CONNECTED) {
-    Serial.print("Attempting to connect to WPA SSID: ");
-    Serial.println(ssid);
-    // Connect to WPA/WPA2 network:
-    status = WiFi.begin(ssid, pass);
-
-    // wait 10 seconds for connection:
-    delay(10000);
-
-  }
-
+        // Wait 10 seconds for connection:
+        delay(10000);
+    }
 }
 
+/**
+ * Print Airlift Wifi Featherwing information.
+ */
 void printWifiDeviceInfo() {
-
-  Serial.println("\nAirlift Wifi Featherwing Information: ");
-  printMacAddress();
-
+    Serial.println("\nAirlift Wifi Featherwing Information: ");
+    printMacAddress();
 }
 
+/**
+ * Print WiFi information.
+ */
 void printWifiInfo() {
+    Serial.println("\nWifi information:");
 
-  Serial.println("\nWifi information:");
+    if (status == WL_CONNECTED) {
+        // Print the SSID of the network you're attached to:
+        Serial.print("  SSID: ");
+        Serial.println(WiFi.SSID());
 
-  if(status == WL_CONNECTED) {
-    // print the SSID of the network you're attached to:
-    Serial.print("  SSID: ");
-    Serial.println(WiFi.SSID());
+        // Print the MAC address of the router you're attached to:
+        byte bssid[6];
+        WiFi.BSSID(bssid);
+        Serial.print("  BSSID: ");
+        _printMacAddress(bssid);
 
-    // print the MAC address of the router you're attached to:
-    byte bssid[6];
-    WiFi.BSSID(bssid);
-    Serial.print("  BSSID: ");
-    _printMacAddress(bssid);
+        // Print your board's IP address:
+        IPAddress ip = WiFi.localIP();
+        Serial.print("  IP Address: ");
+        Serial.println(ip);
 
-    // print your board's IP address:
-    IPAddress ip = WiFi.localIP();
-    Serial.print("  IP Address: ");
-    Serial.println(ip);
+        // Print the received signal strength:
+        long rssi = WiFi.RSSI();
+        Serial.print("  Signal strength (RSSI): ");
+        Serial.println(rssi);
 
-    // print the received signal strength:
-    long rssi = WiFi.RSSI();
-    Serial.print("  Signal strength (RSSI): ");
-    Serial.println(rssi);
-
-    // print the encryption type:
-    byte encryption = WiFi.encryptionType();
-    Serial.print("  Encryption Type: ");
-    Serial.println(encryption, HEX);
-    Serial.println();
-
-  } else {
-    Serial.println("  No network connection");
-  }
-
+        // Print the encryption type:
+        byte encryption = WiFi.encryptionType();
+        Serial.print("  Encryption Type: ");
+        Serial.println(encryption, HEX);
+        Serial.println();
+    } else {
+        Serial.println("  No network connection");
+    }
 }
 
-// Function to print the MAC address of Airlift Wifi Featherwing
+/**
+ * Print the MAC address of Airlift Wifi Featherwing.
+ */
 void printMacAddress() {
-
-  // Read and print the MAC address
-  byte mac[6];
-  WiFi.macAddress(mac);
-  Serial.print("  MAC: ");
-  _printMacAddress(mac);
-
+    // Read and print the MAC address
+    byte mac[6];
+    WiFi.macAddress(mac);
+    Serial.print("  MAC: ");
+    _printMacAddress(mac);
 }
 
-// Function to print MAC address in a readable format
+/**
+ * Print MAC address in a readable format.
+ */
 void _printMacAddress(byte mac[]) {
-  for (int i = 5; i >= 0; i--) {
-    // Add leading zero for single-digit values
-    if (mac[i] < 16) {
-      Serial.print("0");
+    for (int i = 5; i >= 0; i--) {
+        // Add leading zero for single-digit values
+        if (mac[i] < 16) {
+            Serial.print("0");
+        }
+        Serial.print(mac[i], HEX);
+        if (i > 0) {
+            Serial.print(":");
+        }
     }
-    Serial.print(mac[i], HEX);
-    if (i > 0) {
-      Serial.print(":");
-    }
-  }
-  Serial.println();
+    Serial.println();
 }

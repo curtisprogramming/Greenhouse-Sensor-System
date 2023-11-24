@@ -8,8 +8,8 @@
 #define MAXBUF_REQUIREMENT 48
 
 // Check if I2C buffer length is sufficient for the requirement
-#if (defined(I2C_BUFFER_LENGTH) &&                 \
-     (I2C_BUFFER_LENGTH >= MAXBUF_REQUIREMENT)) || \
+#if (defined(I2C_BUFFER_LENGTH) &&                \
+    (I2C_BUFFER_LENGTH >= MAXBUF_REQUIREMENT)) || \
     (defined(BUFFER_LENGTH) && BUFFER_LENGTH >= MAXBUF_REQUIREMENT)
 #define USE_PRODUCT_INFO
 #endif
@@ -17,12 +17,13 @@
 // Create an instance of SensirionI2CSen5x
 SensirionI2CSen5x sen5x;
 
-// Function to set up basic configurations for Sensirion SEN54
+/**
+ * Set up basic configurations for Sensirion SEN54.
+ */
 void setup_basic_sen54() {
-  
     // Begin serial communication
     Serial.begin(115200);
-    
+
     // Wait for the serial port to be ready
     while (!Serial) {
         delay(100);
@@ -68,7 +69,12 @@ void setup_basic_sen54() {
     }
 }
 
-// Function to read and return sensor data from Sensirion SEN54
+/**
+ * Read and return sensor data from Sensirion SEN54.
+ *
+ * Returns:
+ *     SensorData: The sensor data.
+ */
 SensorData get_sen54_data() {
     // Delay for sensor stabilization
     delay(1000);
