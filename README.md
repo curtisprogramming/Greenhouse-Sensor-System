@@ -12,10 +12,10 @@
 - Airlift Featherwing - https://learn.adafruit.com/adafruit-airlift-featherwing-esp32-wifi-co-processor-featherwing/arduino
 - Sen5x - https://wiki.seeedstudio.com/Grove_SEN5X_All_in_One/
 
-### 3. Building the Circuit (Picutes below)
+### 3. Building the Circuit
 **Step 1** - Stack M4 Express on Airlift Featherwing
 
-**Step 2** - Wire the Sen5x to the M4 Express
+**Step 2** - Wire the Sen5x to the M4 Express  (Picutes below)
 
 **Sen5x**
 
