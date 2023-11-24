@@ -43,7 +43,7 @@ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 #define SECRET_CH_ID 000000	// replace 0000000 with your channel number
 #define SECRET_WRITE_APIKEY "XYZ" // replace XYZ with your channel write API Key
 ```
-3. Add wifi network password and username
+3. Insert the correct wifi network password and username
 
 ### 7. Creating a thingspeak channel
 1. Go to [thingspeak.com](https://thingspeak.com/)
