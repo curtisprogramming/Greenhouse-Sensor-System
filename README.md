@@ -35,7 +35,7 @@ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 ```
 
 ### 6. Adding a Secrets.h file containing Wifi and API info
-1. Create file names Secrets.h in the smae folder as the rest of the code
+1. Create file named Secrets.h in the smae folder as the rest of the code
 2. Add the following code
 ```
 #define SECRET_SSID "MySSID" // replace MySSID with your WiFi network name
