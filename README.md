@@ -23,7 +23,7 @@
 
 **M4 Express**
 
-<img src="M4_wiring.jpg" width="263" height="493">
+<img src="M4_wiring.jpg" width="493" height="263">
 
 That's it! The circuit is that easy!
 
