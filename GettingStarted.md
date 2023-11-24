@@ -17,11 +17,11 @@
 
 **Sen5x**
 
-<img src="Sen5x_wiring.jpg" width="300" height="400">
+<img src="ProjectImages/Sen5x_wiring.jpg" width="300" height="400">
 
 **M4 Express**
 
-<img src="M4_wiring.jpg" width="493" height="263">
+<img src="ProjectImages/M4_wiring.jpg" width="493" height="263">
 
 That's it! The circuit is that easy!
 
