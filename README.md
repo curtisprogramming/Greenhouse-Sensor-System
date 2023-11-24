@@ -31,7 +31,7 @@ That's it! The circuit is that easy!
 1. Navigate to the directory you want this code in
 2. Clone is using the command below
 ```
-git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+git clone https://github.com/curtisprogramming/Greenhouse-Sensor-System
 ```
 
 ### 6. Adding a Secrets.h file containing Wifi and API info
@@ -50,9 +50,11 @@ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 2. Create an account
 3. Add a channel
 4. Add two fields to the channel
+   
    Field 1: Temperature
+   
    Filed 2: Humidity
-5. Locate the Write API key and Channel ID and add it to Secrets.h
+6. Locate the Write API key and Channel ID and add it to Secrets.h
 
 ### 8. Running the code
 1. Ensure all the steps above are complted properly
