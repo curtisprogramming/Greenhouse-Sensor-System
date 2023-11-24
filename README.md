@@ -9,4 +9,4 @@ They are using an Adafruit Feather M4 Express, an Adafruit Airlift Featherwing, 
 
 This can be seen here: https://thingspeak.com/channels/2343432
 
-To see how we implemented this look at the [GettingStarted.md](https://github.com/curtisprogramming/Greenhouse-Sensor-System/blob/main/GettingStarted.md) file
+To see how we implemented this look at [GettingStarted.md](https://github.com/curtisprogramming/Greenhouse-Sensor-System/blob/main/GettingStarted.md)
