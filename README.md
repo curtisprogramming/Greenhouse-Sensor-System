@@ -1,4 +1,4 @@
-# Greenhouse-Sensor-System
+# Greenhouse Sensor System
 
 ## Project Overview
 This project was created as a part of the Renewable Energy Scholars Club at Bucknell University. In efforts to restore an old greenhouse on campus, they are implementing sensors to track various enviornmental data. So far the data includes the following:
