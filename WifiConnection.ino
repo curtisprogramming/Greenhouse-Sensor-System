@@ -24,9 +24,9 @@ void _printMacAddress(byte mac[]);
 void wifiConnectionSetup() {
     Serial.begin(115200);
 
-    while (!Serial) {
-        ; // wait for serial port to connect. Needed for native USB port only
-    }
+    // while (!Serial) {
+    //     ; // wait for serial port to connect. Needed for native USB port only
+    // }
 
     Serial.println("Connecting to wifi network");
 

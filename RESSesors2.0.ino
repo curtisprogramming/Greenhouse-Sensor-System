@@ -17,7 +17,7 @@ void setup() {
  */
 void loop() {
     updateSensorData();
-    delay(15000);
+    delay(30*60000);
 }
 
 

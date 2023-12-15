@@ -33,7 +33,9 @@ void updateSensorData() {
         Serial.print("  Ambient Humidity: ");
         Serial.println(sensor_data.ambientHumidity);
 
-        int field1_status = ThingSpeak.setField(1, sensor_data.ambientTemperature);
+        float temp_f = sensor_data.ambientTemperature * (9.0/5.0) + 32.0;
+
+        int field1_status = ThingSpeak.setField(1, temp_f);
         int field2_status = ThingSpeak.setField(2, sensor_data.ambientHumidity);
 
         // Write to the ThingSpeak channel

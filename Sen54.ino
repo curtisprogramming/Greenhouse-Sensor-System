@@ -25,9 +25,9 @@ void setup_basic_sen54() {
     Serial.begin(115200);
 
     // Wait for the serial port to be ready
-    while (!Serial) {
-        delay(100);
-    }
+    // while (!Serial) {
+    //     delay(100);
+    // }
 
     // Initialize the Wire library for I2C communication
     Wire.begin();
